@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CheckoutController;
-use App\Http\Controllers\Api\PaystackWebhookController; // <-- Added the semicolon here!
+use App\Http\Controllers\Api\PaystackWebhookController; 
+use App\Http\Controllers\Api\ProductController;
 
 // Protected routes: Only logged-in users with a valid Sanctum token can access these
 Route::middleware('auth:sanctum')->group(function () {
@@ -12,3 +13,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // Public Webhook Route: Paystack's servers need to reach this without logging in
 Route::post('/webhooks/paystack', [PaystackWebhookController::class, 'handleGatewayCallback']);
+Route::get('/products', [ProductController::class, 'index']);
